@@ -1,3 +1,6 @@
+import * from Minecraft;
+suppressDeprecated(true);
+
 client = MinecraftClient.getClient();
 me = client.getPlayer();
 
@@ -53,9 +56,9 @@ fun mapToString(map){
     return string;
 }
 
-fun listToString(List){
+fun listToString(list1){
     string = "[";
-    foreach(item : List){
+    foreach(item : list1){
         if(item.getValueType()=="Map"){
             string = string + mapToString(item);
         }
@@ -105,3 +108,4 @@ pos.executes(fun(){
 client.addCommand(pos);
 
 hold();
+

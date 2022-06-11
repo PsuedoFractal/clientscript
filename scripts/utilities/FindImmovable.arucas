@@ -1,3 +1,5 @@
+import * from Minecraft;
+
 // Single box manager class allows us to abstract the highlighting process
 class SingleBoxManager {
     var boxes = { };
@@ -38,7 +40,7 @@ client = MinecraftClient.getClient();
 boxManager = new SingleBoxManager();
 
 // List of immovable blocks
-immovables = [Material.OBSIDIAN, Material.ENDER_CHEST, Material.CRYING_OBSIDIAN, Material.ANVIL, Material.CHIPPED_ANVIL, Material.DAMAGED_ANVIL, Material.RESPAWN_ANCHOR]
+immovables = [Material.OBSIDIAN, Material.ENDER_CHEST, Material.CRYING_OBSIDIAN, Material.ANVIL, Material.CHIPPED_ANVIL, Material.DAMAGED_ANVIL, Material.RESPAWN_ANCHOR];
 shouldRun = false;
 searchRadius = 64;
 fromY = 0;
@@ -104,9 +106,9 @@ findImmovableCommand = {
             }
         },
         "height <from> <to>" : {
-            "" : fun(from, to) {
-                fromY = from;
-                toY = to;
+            "" : fun(froma, toa) {
+                fromY = froma;
+                toY = toa;
             }
         }
     },
@@ -139,7 +141,7 @@ client.addCommand(CommandBuilder.fromMap(findImmovableCommand));
 // When a block is broken and it's obsidian we stop 
 // highlighting it because it doesn't exist anymore.
 blockBreakEvent = new GameEvent("onBlockBroken", fun(block) {
-    if (immovable.contains(block.getMaterial())) {
+    if (immovables.contains(block.getMaterial())) {
         boxManager.removePosition(block.getX(), block.getY(), block.getZ());
     }
 });

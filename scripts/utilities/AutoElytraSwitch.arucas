@@ -44,7 +44,7 @@ fun findFirstSlot(items, player) {
     slots = [];
     foreach (item : items){
         item = Material.of(item).asItemStack();
-        slots.concat(player.getAllSlotsFor(item));
+        slots.addAll(player.getAllSlotsFor(item));
     }
     if (slots.isEmpty()) {
         return null;
